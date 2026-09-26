@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Instrument Serif', serif;
+  --font-sans: 'Outfit', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --color-ember: #ff5314;
+  --color-saffron: #e3a21a;
+  --color-bone: #f4ece1;
+  --color-soot: #090806;
+  --color-ash: #161310;
+  --color-smoke: #9b9287;
+  --color-copper: #c4843c;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #090806;
+  color: #f4ece1;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+@media (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+}
+
+::selection {
+  background: #ff5314;
+  color: #090806;
+}
+
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  opacity: 0.09;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.ember-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: #ff5314;
+  box-shadow: 0 0 18px #ff5314, 0 0 40px #e3a21a55;
+  pointer-events: none;
+  z-index: 100;
+  mix-blend-mode: screen;
+  transform: translate(-50%, -50%);
+  transition: width 0.25s ease, height 0.25s ease, background 0.25s ease;
+}
+
+.ember-cursor.hovering {
+  width: 54px;
+  height: 54px;
+  background: transparent;
+  border: 1px solid #f4ece1;
+  box-shadow: none;
+  mix-blend-mode: difference;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 3rem;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.plate-scene {
+  perspective: 900px;
+  transform-style: preserve-3d;
+}
+
+.plate {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  transform-style: preserve-3d;
+  animation: spin-slow 18s linear infinite;
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+.plate-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  transform-style: preserve-3d;
+}
+
+.thali {
+  perspective: 1100px;
+}
+
+.thali-ring {
+  position: relative;
+  width: min(72vw, 640px);
+  height: min(72vw, 640px);
+  transform-style: preserve-3d;
+  margin-inline: auto;
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.thali-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 210px;
+  height: 280px;
+  margin: -140px 0 0 -105px;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.reveal {
+  animation: rise 1s ease both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.menu-row:hover .menu-img {
+  opacity: 1;
+  transform: translate(-20%, -50%) scale(1);
+}
+
+.flame-bar {
+  transform-origin: bottom;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .plate,
+  .reveal {
+    animation: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}

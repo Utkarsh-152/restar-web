@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import Cursor from './components/Cursor'
-import Plate3D from './components/Plate3D'
+import HeroVisual from './components/HeroVisual'
 import Thali from './components/Thali'
 import { flavors, portals, rooms } from './data'
 
@@ -121,7 +121,7 @@ export default function App() {
                 </p>
               </div>
             </div>
-            <Plate3D />
+            <HeroVisual />
           </div>
         </section>
 

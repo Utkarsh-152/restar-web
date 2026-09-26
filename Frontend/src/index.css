@@ -89,54 +89,33 @@ body {
   }
 }
 
-.plate-scene {
-  perspective: 900px;
-  transform-style: preserve-3d;
+.hero-ken {
+  animation: ken 22s ease-in-out infinite alternate;
+  transform-origin: center;
 }
 
-.plate {
-  position: relative;
-  width: 320px;
-  height: 320px;
-  transform-style: preserve-3d;
-  animation: spin-slow 18s linear infinite;
-}
-
-@keyframes spin-slow {
+@keyframes ken {
+  from {
+    transform: scale(1);
+  }
   to {
-    transform: rotateY(360deg);
+    transform: scale(1.08);
   }
 }
 
-.plate-layer {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  transform-style: preserve-3d;
+.menu-fade {
+  animation: fade-plate 0.55s ease both;
 }
 
-.thali {
-  perspective: 1100px;
-}
-
-.thali-ring {
-  position: relative;
-  width: min(72vw, 640px);
-  height: min(72vw, 640px);
-  transform-style: preserve-3d;
-  margin-inline: auto;
-  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.thali-card {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 210px;
-  height: 280px;
-  margin: -140px 0 0 -105px;
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
+@keyframes fade-plate {
+  from {
+    opacity: 0.4;
+    transform: scale(1.04);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .reveal {
@@ -154,18 +133,14 @@ body {
   }
 }
 
-.menu-row:hover .menu-img {
-  opacity: 1;
-  transform: translate(-20%, -50%) scale(1);
-}
-
 .flame-bar {
   transform-origin: bottom;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .marquee-track,
-  .plate,
+  .hero-ken,
+  .menu-fade,
   .reveal {
     animation: none;
   }
